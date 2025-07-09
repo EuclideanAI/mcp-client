@@ -305,13 +305,13 @@ export function ToolInterface({
 
           <button
             onClick={() => setIsCollapsed(!isCollapsed)}
-            className="p-1 rounded-md hover:bg-gray-100 transition-colors"
+            className="p-1 rounded-md hover:bg-muted transition-colors"
             aria-label={isCollapsed ? "Expand interface" : "Collapse interface"}
           >
             {isCollapsed ? (
-              <ChevronDown className="text-gray-600" size={20} />
+              <ChevronDown className="text-muted-foreground" size={20} />
             ) : (
-              <ChevronUp className="text-gray-600" size={20} />
+              <ChevronUp className="text-muted-foreground" size={20} />
             )}
           </button>
         </div>
@@ -321,14 +321,14 @@ export function ToolInterface({
         <>
           {/* Error Message */}
           {error && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+            <div className="mb-4 p-3 bg-destructive/10 border border-destructive/20 rounded-md">
               <div className="flex items-center gap-2">
-                <Settings className="w-4 h-4 text-red-500" />
-                <span className="text-sm text-red-700 font-medium">
+                <Settings className="w-4 h-4 text-destructive" />
+                <span className="text-sm text-destructive font-medium">
                   Interface Error
                 </span>
               </div>
-              <div className="text-sm text-red-600 mt-1 whitespace-pre-line">
+              <div className="text-sm text-destructive/90 mt-1 whitespace-pre-line">
                 {error}
               </div>
             </div>
@@ -337,8 +337,8 @@ export function ToolInterface({
           {/* Tool Selection Status */}
           {!selectedTool && (
             <div className="mb-6 text-center py-8">
-              <Settings className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-              <p className="text-sm text-gray-500">
+              <Settings className="w-12 h-12 text-muted-foreground/50 mx-auto mb-3" />
+              <p className="text-sm text-muted-foreground">
                 Click &quot;Execute&quot; on any tool from Available Actions
                 above to configure and run it here.
               </p>
@@ -346,15 +346,15 @@ export function ToolInterface({
           )}
 
           {selectedTool && (
-            <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-md">
+            <div className="mb-6 p-3 bg-primary/10 border border-primary/20 rounded-md">
               <div className="flex items-center gap-2">
-                <Settings className="w-4 h-4 text-blue-600" />
+                <Settings className="w-4 h-4 text-primary" />
                 <div>
-                  <h4 className="text-sm font-medium text-blue-900">
+                  <h4 className="text-sm font-medium text-foreground">
                     {selectedTool.name}
                   </h4>
                   {selectedTool.description && (
-                    <p className="text-xs text-blue-700">
+                    <p className="text-xs text-muted-foreground">
                       {selectedTool.description}
                     </p>
                   )}
@@ -366,10 +366,10 @@ export function ToolInterface({
           {/* Parameters Form */}
           {selectedTool && parameters.length > 0 && (
             <div className="mb-6">
-              <h4 className="text-sm font-medium text-gray-700 mb-3">
+              <h4 className="text-sm font-medium text-foreground mb-3">
                 Parameters{" "}
                 {parameters.filter((p) => p.required).length > 0 && (
-                  <span className="text-xs text-red-600 ml-1">
+                  <span className="text-xs text-destructive ml-1">
                     (* required)
                   </span>
                 )}
@@ -377,18 +377,18 @@ export function ToolInterface({
               <div className="space-y-4">
                 {parameters.map((param) => (
                   <div key={param.name}>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-foreground mb-1">
                       {param.name}
                       {param.required && (
-                        <span className="text-red-500 ml-1">*</span>
+                        <span className="text-destructive ml-1">*</span>
                       )}
-                      <span className="text-xs text-gray-500 ml-1">
+                      <span className="text-xs text-muted-foreground ml-1">
                         ({param.type})
                       </span>
                     </label>
                     {renderParameterInput(param)}
                     {param.description && (
-                      <p className="text-xs text-gray-500 mt-1">
+                      <p className="text-xs text-muted-foreground mt-1">
                         {param.description}
                       </p>
                     )}
@@ -407,8 +407,8 @@ export function ToolInterface({
                 className={cn(
                   "flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md transition-colors",
                   executing
-                    ? "bg-gray-100 text-gray-400 cursor-not-allowed"
-                    : "bg-blue-600 text-white hover:bg-blue-700"
+                    ? "bg-muted text-muted-foreground cursor-not-allowed"
+                    : "bg-primary text-primary-foreground hover:bg-primary/90"
                 )}
               >
                 {executing ? (
@@ -424,21 +424,26 @@ export function ToolInterface({
           {/* Results */}
           {result && (
             <div className="space-y-4">
-              <h4 className="text-sm font-medium text-gray-700">
+              <h4 className="text-sm font-medium text-foreground">
                 Execution Result
                 {result.isError && (
-                  <span className="text-red-600 ml-2">(Error Response)</span>
+                  <span className="text-destructive ml-2">(Error Response)</span>
                 )}
               </h4>
               <div
                 className={cn(
                   "p-4 rounded-md border",
                   result.isError
-                    ? "bg-red-50 border-red-200"
-                    : "bg-green-50 border-green-200"
+                    ? "bg-destructive/10 border-destructive/20"
+                    : "bg-green-500/10 border-green-500/20 dark:bg-green-400/10 dark:border-green-400/20"
                 )}
               >
-                <pre className="text-sm whitespace-pre-wrap overflow-x-auto">
+                <pre className={cn(
+                  "text-sm whitespace-pre-wrap overflow-x-auto",
+                  result.isError 
+                    ? "text-destructive" 
+                    : "text-green-700 dark:text-green-300"
+                )}>
                   {typeof result.content === "string"
                     ? result.content
                     : JSON.stringify(result.content, null, 2)}

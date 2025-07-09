@@ -35,7 +35,7 @@ export function ModelSelector({
         onClick={() => setIsOpen(!isOpen)}
         disabled={disabled}
         className={cn(
-          "flex items-center justify-between w-full px-3 py-2 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors",
+          "flex items-center justify-between w-full px-3 py-2 text-sm border border-border rounded-lg bg-background text-foreground hover:bg-muted transition-colors",
           disabled && "opacity-50 cursor-not-allowed"
         )}
       >
@@ -53,7 +53,7 @@ export function ModelSelector({
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-background border border-border rounded-lg shadow-lg z-50">
           <div className="p-2">
             {/* Model Options */}
             <div className="space-y-1">
@@ -64,15 +64,15 @@ export function ModelSelector({
                   className={cn(
                     "w-full text-left px-3 py-2 rounded-lg text-sm transition-colors",
                     settings.model === model.id
-                      ? "bg-blue-50 text-blue-700 font-medium"
-                      : "hover:bg-gray-100"
+                      ? "bg-primary/10 text-primary font-medium"
+                      : "hover:bg-muted text-foreground"
                   )}
                 >
                   <div className="font-medium">{model.name}</div>
-                  <div className="text-xs text-gray-500 mt-1">
+                  <div className="text-xs text-muted-foreground mt-1">
                     {model.description}
                   </div>
-                  <div className="text-xs text-gray-400 mt-1">
+                  <div className="text-xs text-muted-foreground/70 mt-1">
                     Max tokens: {model.maxTokens.toLocaleString()}
                   </div>
                 </button>
@@ -80,10 +80,10 @@ export function ModelSelector({
             </div>
 
             {/* Advanced Settings Toggle */}
-            <div className="border-t border-gray-100 mt-2 pt-2">
+            <div className="border-t border-border mt-2 pt-2">
               <button
                 onClick={() => setShowAdvanced(!showAdvanced)}
-                className="flex items-center gap-2 w-full px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                className="flex items-center gap-2 w-full px-3 py-2 text-sm text-muted-foreground hover:bg-muted hover:text-foreground rounded-lg transition-colors"
               >
                 <Settings size={14} />
                 Advanced Settings
@@ -101,7 +101,7 @@ export function ModelSelector({
                 <div className="mt-2 space-y-3 px-3 pb-2">
                   {/* Temperature */}
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-foreground mb-1">
                       Temperature: {settings.temperature}
                     </label>
                     <input
@@ -115,9 +115,9 @@ export function ModelSelector({
                           temperature: parseFloat(e.target.value),
                         })
                       }
-                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                      className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer slider"
                     />
-                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                    <div className="flex justify-between text-xs text-muted-foreground mt-1">
                       <span>Precise</span>
                       <span>Creative</span>
                     </div>
@@ -125,7 +125,7 @@ export function ModelSelector({
 
                   {/* Max Tokens */}
                   <div>
-                    <label className="block text-xs font-medium text-gray-700 mb-1">
+                    <label className="block text-xs font-medium text-foreground mb-1">
                       Max Tokens
                     </label>
                     <input
@@ -139,7 +139,7 @@ export function ModelSelector({
                           maxTokens: parseInt(e.target.value),
                         })
                       }
-                      className="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="w-full px-2 py-1 text-xs border border-border rounded bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-ring"
                     />
                   </div>
                 </div>
