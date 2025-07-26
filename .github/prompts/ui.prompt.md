@@ -1,0 +1,97 @@
+Here are the basic UI components needed for the MCP Client interface:
+- **Header**: Displays the title of the application and dark/light mode toggle.
+- **Resizable Container**: A resizable container that holds both the LLM chat panel and MCP control panel.
+- **LLM Chat Panel**: A panel for the LLM agent chat interface, which includes:
+  - LLM selection dropdown
+  - Chat messages area
+  - Input field for user prompts
+  - Send button
+  - Tool execution confirmation dialog (inside the chat messages area)
+  - Execution result display (inside the chat messages area)
+- **MCP Control Panel**: Main display area for MCP tools, which includes:
+  - Info panel stick on the top simply display what the control panel is used for
+  - MCP Control Panel Header - showing all different MCP remote server connections
+    - Server Configuration Component - showing the connection test status.
+      - Test button. 
+      - Input fields for URL, Bearer Token
+      - Collapsable button 
+    - Avaiable Actions Component - showing the list of available MCP tools for the selected server connection.
+      - Refresh button to refresh the list of available MCP tools
+      - Collapsable button 
+      - Select/Deselect all button 
+      - Checkbox for each MCP tool 
+    - Tool interface - Showing the form entry for the selected MCP tool and manual execution of the MCP tool.
+      - Input fields for each required parameter of the MCP tool
+      - Submit button to execute the MCP tool
+      - Execution Results 
+      - Collapsable button for the whole component
+
+CSS Framework: Tailwind CSS
+UI Components Library: shadcn/ui
+Colour Palette (OKLCH):
+
+Light Mode:
+- Background: oklch(1 0 0)
+- Foreground: oklch(0.145 0 0)
+- Card: oklch(1 0 0)
+- Card Foreground: oklch(0.145 0 0)
+- Popover: oklch(1 0 0)
+- Popover Foreground: oklch(0.145 0 0)
+- Primary: oklch(0.205 0 0)
+- Primary Foreground: oklch(0.985 0 0)
+- Secondary: oklch(0.97 0 0)
+- Secondary Foreground: oklch(0.205 0 0)
+- Muted: oklch(0.97 0 0)
+- Muted Foreground: oklch(0.556 0 0)
+- Accent: oklch(0.97 0 0)
+- Accent Foreground: oklch(0.205 0 0)
+- Destructive: oklch(0.577 0.245 27.325)
+- Border: oklch(0.922 0 0)
+- Input: oklch(0.922 0 0)
+- Ring: oklch(0.708 0 0)
+- Chart 1: oklch(0.646 0.222 41.116)
+- Chart 2: oklch(0.6 0.118 184.704)
+- Chart 3: oklch(0.398 0.07 227.392)
+- Chart 4: oklch(0.828 0.189 84.429)
+- Chart 5: oklch(0.769 0.188 70.08)
+- Sidebar: oklch(0.985 0 0)
+- Sidebar Foreground: oklch(0.145 0 0)
+- Sidebar Primary: oklch(0.205 0 0)
+- Sidebar Primary Foreground: oklch(0.985 0 0)
+- Sidebar Accent: oklch(0.97 0 0)
+- Sidebar Accent Foreground: oklch(0.205 0 0)
+- Sidebar Border: oklch(0.922 0 0)
+- Sidebar Ring: oklch(0.708 0 0)
+
+Dark Mode:
+- Background: oklch(0.145 0 0)
+- Foreground: oklch(0.985 0 0)
+- Card: oklch(0.205 0 0)
+- Card Foreground: oklch(0.985 0 0)
+- Popover: oklch(0.205 0 0)
+- Popover Foreground: oklch(0.985 0 0)
+- Primary: oklch(0.922 0 0)
+- Primary Foreground: oklch(0.205 0 0)
+- Secondary: oklch(0.269 0 0)
+- Secondary Foreground: oklch(0.985 0 0)
+- Muted: oklch(0.269 0 0)
+- Muted Foreground: oklch(0.708 0 0)
+- Accent: oklch(0.269 0 0)
+- Accent Foreground: oklch(0.985 0 0)
+- Destructive: oklch(0.704 0.191 22.216)
+- Border: oklch(1 0 0 / 10%)
+- Input: oklch(1 0 0 / 15%)
+- Ring: oklch(0.556 0 0)
+- Chart 1: oklch(0.488 0.243 264.376)
+- Chart 2: oklch(0.696 0.17 162.48)
+- Chart 3: oklch(0.769 0.188 70.08)
+- Chart 4: oklch(0.627 0.265 303.9)
+- Chart 5: oklch(0.645 0.246 16.439)
+- Sidebar: oklch(0.205 0 0)
+- Sidebar Foreground: oklch(0.985 0 0)
+- Sidebar Primary: oklch(0.488 0.243 264.376)
+- Sidebar Primary Foreground: oklch(0.985 0 0)
+- Sidebar Accent: oklch(0.269 0 0)
+- Sidebar Accent Foreground: oklch(0.985 0 0)
+- Sidebar Border: oklch(1 0 0 / 10%)
+- Sidebar Ring: oklch(0.556 0 0)
